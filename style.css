@@ -1,0 +1,32 @@
+.flipping
+{   
+    background: url("./images/flippingcoins.gif") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 97px;
+    width: 103px;
+}
+
+.head
+{      background: url("./images/10-rupees-coin-new.jpg") repeat scroll 248px -5px rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 236px;
+    width: 250px;
+}
+
+.tail
+{  	   background: url("./images/10-rupees-coin-new.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
+   
+    display: inline-block;
+    height: 239px;
+    width: 250px;
+
+}
+.tossing
+{  	   background: url("./images/cointoss.gif") repeat scroll 0 0 rgba(0, 0, 0, 0);
+   
+    display: inline-block;
+    height: 239px;
+    width: 250px;
+
+}
+
