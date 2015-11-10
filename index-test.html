@@ -1,0 +1,92 @@
+<html >
+        <head>
+                <title>Penney's game</title>
+                <link rel="stylesheet" type="text/css" href="style.css"/>
+                <script src="./script/jquery.min.js"></script>
+                <script src="./script/angular.min.js"></script>
+        </head>
+        <body >
+       This is a simulation test of Penney's game
+
+       <table border=1><tr><td></td><td>HHH</td><td>HHT</td><td>HTH</td><td>HTT</td><td>THH</td><td>THT</td><td>TTH</td><td>TTT</td></tr>
+       <tr><td>HHH</td><td id="HHH-HHH"></td><td id="HHH-HHT"></td><td id="HHH-HTH"></td><td id="HHH-HTT"></td><td id="HHH-THH"></td><td id="HHH-THT"></td><td id="HHH-TTH"></td><td id="HHH-TTT"></td></tr>
+       <tr><td>HHT</td><td id="HHT-HHH"></td><td id="HHT-HHT"></td><td id="HHT-HTH"></td><td id="HHT-HTT"></td><td id="HHT-THH"></td><td id="HHT-THT"></td><td id="HHT-TTH"></td><td id="HHT-TTT"></td></tr>
+       <tr><td>HTH</td><td id="HTH-HHH"></td><td id="HTH-HHT"></td><td id="HTH-HTH"></td><td id="HTH-HTT"></td><td id="HTH-THH"></td><td id="HTH-THT"></td><td id="HTH-TTH"></td><td id="HTH-TTT"></td></tr>
+       <tr><td>HTT</td><td id="HTT-HHH"></td><td id="HTT-HHT"></td><td id="HTT-HTH"></td><td id="HTT-HTT"></td><td id="HTT-THH"></td><td id="HTT-THT"></td><td id="HTT-TTH"></td><td id="HTT-TTT"></td></tr>
+       <tr><td>THH</td><td id="THH-HHH"></td><td id="THH-HHT"></td><td id="THH-HTH"></td><td id="THH-HTT"></td><td id="THH-THH"></td><td id="THH-THT"></td><td id="THH-TTH"></td><td id="THH-TTT"></td></tr>
+       <tr><td>THT</td><td id="THT-HHH"></td><td id="THT-HHT"></td><td id="THT-HTH"></td><td id="THT-HTT"></td><td id="THT-THH"></td><td id="THT-THT"></td><td id="THT-TTH"></td><td id="THT-TTT"></td></tr>
+       <tr><td>TTH</td><td id="TTH-HHH"></td><td id="TTH-HHT"></td><td id="TTH-HTH"></td><td id="TTH-HTT"></td><td id="TTH-THH"></td><td id="TTH-THT"></td><td id="TTH-TTH"></td><td id="TTH-TTT"></td></tr>
+       <tr><td>TTT</td><td id="TTT-HHH"></td><td id="TTT-HHT"></td><td id="TTT-HTH"></td><td id="TTT-HTT"></td><td id="TTT-THH"></td><td id="TTT-THT"></td><td id="TTT-TTH"></td><td id="TTT-TTT"></td></tr>
+       
+
+       </table>
+       <script type="text/javascript">
+       function fillupData(){
+       	var choiceArray=["HHH","HHT","HTH","HTT","THH","THT","TTH","TTT"];
+
+       	
+		var noOfGames=1000;
+       	for (var i = choiceArray.length - 1; i >= 0; i--) {
+       		var player1Choice=choiceArray[i];
+       		for (var j = choiceArray.length - 1; j >= 0; j--) {
+       			if(i!=j){
+       				var player2Choice=choiceArray[j];
+       					proceedWithGamesAndStoreResults(player1Choice,player2Choice,noOfGames);
+       			}
+       		
+       		
+       	};
+       	};
+       	
+       
+       
+
+       }
+
+       function proceedWithGamesAndStoreResults(player1Choice,player2Choice,noOfGames){
+       	 var win1=0;
+        var win2=0;
+
+        for (var i = noOfGames - 1; i >= 0; i--) {
+        		var sequence="";
+		        var winner=""
+		       	while(winner==""){
+		       		sequence=sequence+getTossResults();
+					winner = detectWinner(sequence,player1Choice,player2Choice);
+					
+		       	}
+		        if(winner=="player1"){
+					win1++;
+		        }
+		        else if(winner=="player2"){
+		        	win2++;
+		        }
+        };
+       
+
+       $("#"+player1Choice+"-"+player2Choice).html((win1*100/noOfGames)+" %");
+       }
+        function detectWinner(sequence,player1Choice,player2Choice){
+        	if(sequence.indexOf(player1Choice)!=-1){
+        		return "player1";
+        	}
+        	else if(sequence.indexOf(player2Choice)!=-1){
+        		return "player2";
+        	}
+        	return "";
+        }
+       function getTossResults(){
+       	var isHead= Math.random()<.5;
+       	if(isHead){
+       		return "H";
+       	}
+       	else{
+       		return "T";
+       	}
+       }
+       fillupData();
+
+       </script>
+        
+        </body>
+</html>
